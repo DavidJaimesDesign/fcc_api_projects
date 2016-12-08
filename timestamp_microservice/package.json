@@ -1,0 +1,24 @@
+{
+  "name": "timestamp_microservice",
+  "version": "1.0.0",
+  "description": "a timestamp microservice",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DavidJaimesDesign/fcc_api_projects.git"
+  },
+  "keywords": [
+    "fcc",
+    "timestamp",
+    "api"
+  ],
+  "author": "David Jaimes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DavidJaimesDesign/fcc_api_projects/issues"
+  },
+  "homepage": "https://github.com/DavidJaimesDesign/fcc_api_projects#readme"
+}
