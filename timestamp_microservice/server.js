@@ -52,6 +52,5 @@ app.get('/:timestamp', function(req, res) {
 	var timestamp = req.params.timestamp
 	res.send("Timestamp: " + verifydate(timestamp) )
 });
-app.listen(3000, function(){
-	console.log("example app listening on port 3000")
-})
+app.listen(process.env.PORT || 3000)
+
