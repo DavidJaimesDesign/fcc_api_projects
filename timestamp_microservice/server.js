@@ -30,9 +30,14 @@ function verifydate(date){
 		result.unix = Date.parse(date)
 		result.natural = cleanDate
 		return JSON.stringify(result)
-	} else if(!isNaN(date)){
+	} else if(date > 0){
 		result.unix = date
-		result.natural = "cleaned up date"
+		var rawNaturalDate = new Date(date)
+		var year      = rawNaturalDate.getFullYear();
+		var month     = months[rawNaturalDate.getMonth()]
+		var day       = rawNaturalDate.getDate();
+		var cleanDate = month + " " + day + ", " + year 
+		result.natural = cleanDate
 		return JSON.stringify(result)
 	}else {	
 		return JSON.stringify(result)
