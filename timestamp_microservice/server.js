@@ -7,10 +7,32 @@ function verifydate(date){
 		unix: null,
 		natural: null
 	}
-
+	var months = [
+		"January",
+		"February",
+		"March",
+		"April",
+		"May",
+		"June",
+		"July",
+		"August",
+		"September",
+		"October",
+		"Novermber",
+		"December"
+	]
 	if(Date.parse(date) > 1){
+		var rawNaturalDate = new Date(Date.parse(date))
+		var year      = rawNaturalDate.getFullYear();
+		var month     = months[rawNaturalDate.getMonth()]
+		var day       = rawNaturalDate.getDate();
+		var cleanDate = month + " " + day + ", " + year 
 		result.unix = Date.parse(date)
-		result.natural = "Date converted"
+		result.natural = cleanDate
+		return JSON.stringify(result)
+	} else if(!isNaN(date)){
+		result.unix = date
+		result.natural = "cleaned up date"
 		return JSON.stringify(result)
 	}else {	
 		return JSON.stringify(result)
