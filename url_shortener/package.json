@@ -1,0 +1,28 @@
+{
+  "name": "url_shortener",
+  "version": "1.0.0",
+  "description": "A url shortnener you pass it a url it returns a shortened url. A invalid url gives an error. The shortened url redirects to the long url page",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DavidJaimesDesign/fcc_api_projects.git"
+  },
+  "keywords": [
+    "tinyurl",
+    "microservice",
+    "url",
+    "shortener"
+  ],
+  "author": "David Jaimes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DavidJaimesDesign/fcc_api_projects/issues"
+  },
+  "homepage": "https://github.com/DavidJaimesDesign/fcc_api_projects#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
