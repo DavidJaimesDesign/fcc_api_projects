@@ -1,9 +1,9 @@
-var express  = require('express')
-var path     = require('path')
-var shortid  = require('shortid')
-var validURL = require('valid-url')
-var app      = express()
-const MongoClient = require('mongodb').MongoClient
+var express     = require('express')
+var path        = require('path')
+var shortid     = require('shortid')
+var validURL    = require('valid-url')
+var app         = express()
+var MongoClient = require('mongodb').MongoClient
 //helper functions
 
 function IsURL(url) {
@@ -25,7 +25,7 @@ function generateUrlObject(url){
 //Connect to DB
 var db
 
-MongoClient.connect("mongodb://LeetDave:EasyPass13@ds127958.mlab.com:27958/djd-urlshortener", (err, database) => {
+MongoClient.connect("mongodb://LeetDave:EasyPass13@ds127958.mlab.com:27958/djd-urlshortener",function(err, database){
 	if (err) return console.log(err)
 	db = database
 	app.listen(process.env.PORT || 3000)
