@@ -1,7 +1,8 @@
-var express = require('express')
-var path    = require('path')
-var shortid = require('shortid')
-var app     = express()
+var express  = require('express')
+var path     = require('path')
+var shortid  = require('shortid')
+var validURL = require('valid-url') //this will help us validate the URL
+var app      = express()
 
 function IsURL(url) {
 	return false;
