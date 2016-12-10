@@ -3,6 +3,7 @@ var path     = require('path')
 var shortid  = require('shortid')
 var validURL = require('valid-url')
 var app      = express()
+const MongoClient = require('mongodb').MongoClient
 //helper functions
 
 function IsURL(url) {
@@ -21,6 +22,14 @@ function generateUrlObject(url){
 			}
 	return urlObject
 }
+//Connect to DB
+var db
+
+MongoClient.connect("mongodb://LeetDave:EasyPass13@ds127958.mlab.com:27958/djd-urlshortener", (err, database) => {
+	if (err) return console.log(err)
+	db = database
+	app.listen(process.env.PORT || 3000)
+})
 
 //API
 
@@ -41,4 +50,12 @@ app.get('/new/*', function(req, res) {
 app.get('/:shorturl', function(req, res) {
 	//call if in database redirect to site else return error
 })
-app.listen(process.env.PORT || 3000)
+
+app.post('/test', function(req, res){
+	var testobject = {url: "potato", shorturl: "ptp"}
+	db.collection('shorturls').save(testobject, function(err, result){
+		if (err) return console.log(err)
+		res.redirect('/')
+	})
+})
+
