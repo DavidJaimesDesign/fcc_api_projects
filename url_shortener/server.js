@@ -3,6 +3,7 @@ var path     = require('path')
 var shortid  = require('shortid')
 var validURL = require('valid-url')
 var app      = express()
+//helper functions
 
 function IsURL(url) {
 	if (validURL.isUri(url)){
@@ -13,9 +14,15 @@ function IsURL(url) {
 }
 
 	
-function generateUrl(){
-	return "http://wwww.djd-urlshortner.heroku.com/" + shortid.generate();
+function generateUrlObject(url){
+	var urlObject = {
+			url: url,
+			shorturl: "http://wwww.djd-urlshortner.heroku.com/" + shortid.generate()
+			}
+	return urlObject
 }
+
+//API
 
 app.get('/', function(req, res){
 	res.sendFile(path.join(__dirname + '/views/index.html'))
@@ -25,7 +32,7 @@ app.get('/new/*', function(req, res) {
 	var url = req.params[0]
 	var error = { error : "That isn't a valid URL."}
 	if (IsURL(url)) {
-		res.send("URL will be shortened")
+		res.send(JSON.stringify(generateUrlObject(url)));
 	} else {
 		res.send(JSON.stringify(error))
 		}
