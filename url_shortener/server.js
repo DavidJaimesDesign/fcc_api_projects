@@ -28,6 +28,7 @@ var db
 MongoClient.connect("mongodb://LeetDave:EasyPass13@ds127958.mlab.com:27958/djd-urlshortener",function(err, database){
 	if (err) return console.log(err)
 	db = database
+	console.log("connected to the database")
 	app.listen(process.env.PORT || 3000)
 })
 
@@ -53,7 +54,7 @@ app.get('/:shorturl', function(req, res) {
 
 app.post('/test', function(req, res){
 	var testobject = {url: "potato", shorturl: "ptp"}
-	db.collection('shorturls').save(testobject, function(err, result){
+	db.collection('shorturls').insert(testobject, function(err, result){
 		if (err) return console.log(err)
 		res.redirect('/')
 	})
