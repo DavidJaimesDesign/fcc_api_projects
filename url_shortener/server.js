@@ -46,7 +46,11 @@ MongoClient.connect("mongodb://LeetDave:EasyPass13@ds127958.mlab.com:27958/djd-u
 		var error = { error : "That isn't a valid URL."}
 		if (IsURL(url)) {
 			//here is where we post to the db
-			res.send(JSON.stringify(generateUrlObject(url)));
+			var shortenedURL = generateUrlObject(url)
+			db.collection('sites').save(shortenedURL, function(err, result){
+				if (err) return console.log(err)
+			})
+			res.send(JSON.stringify(shortenedURL));
 		} else {
 			res.send(JSON.stringify(error))
 		}
