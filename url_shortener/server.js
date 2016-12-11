@@ -17,7 +17,7 @@ function IsURL(url) {
 function generateUrlObject(url){
 	var urlObject = {
 			url: url,
-			shorturl: "http://wwww.djd-urlshortner.heroku.com/" + shortid.generate()
+			shorturl: "https://djd-urlshortener.herokuapp.com/" + shortid.generate()
 			}
 	return urlObject
 }
@@ -61,7 +61,17 @@ MongoClient.connect("mongodb://LeetDave:EasyPass13@ds127958.mlab.com:27958/djd-u
 	});
 
 	app.get('/:shorturl', function(req, res) {
-		//call if in database redirect to site else return error
+		var shorturl = "https://djd-urlshortener.herokuapp.com/" + req.params.shorturl
+		var error = { error: "That short url is not in DB"}
+		db.collection('sites').findOne({"shorturl": shorturl},function(err, result){
+			if (err) return console.log(err)
+			if (result){
+				console.log('Redirecting to ' + result.url)
+				res.redirect(result.url)	
+			}else{
+				res.send(JSON.stringify(error) + shorturl)
+			}
+		})
 	})
 })
 
