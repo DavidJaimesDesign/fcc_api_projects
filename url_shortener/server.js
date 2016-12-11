@@ -14,7 +14,6 @@ function IsURL(url) {
 	} 
 }
 
-	
 function generateUrlObject(url){
 	var urlObject = {
 			url: url,
@@ -29,34 +28,34 @@ MongoClient.connect("mongodb://LeetDave:EasyPass13@ds127958.mlab.com:27958/djd-u
 	if (err) return console.log(err)
 	db = database
 	console.log("connected to the database")
+
+	db.createCollection("sites", {
+					capped: true,
+					size: 5242880,
+					max: 5000
+					})
 	app.listen(process.env.PORT || 3000)
-})
+	//API
 
-//API
+	app.get('/', function(req, res){
+		res.sendFile(path.join(__dirname + '/views/index.html'))
+	});
 
-app.get('/', function(req, res){
-	res.sendFile(path.join(__dirname + '/views/index.html'))
-});
-
-app.get('/new/*', function(req, res) {
-	var url = req.params[0]
-	var error = { error : "That isn't a valid URL."}
-	if (IsURL(url)) {
-		res.send(JSON.stringify(generateUrlObject(url)));
-	} else {
-		res.send(JSON.stringify(error))
+	app.get('/new/*', function(req, res) {
+		var url = req.params[0]
+		var error = { error : "That isn't a valid URL."}
+		if (IsURL(url)) {
+			//here is where we post to the db
+			res.send(JSON.stringify(generateUrlObject(url)));
+		} else {
+			res.send(JSON.stringify(error))
 		}
-});
+	});
 
-app.get('/:shorturl', function(req, res) {
-	//call if in database redirect to site else return error
-})
-
-app.post('/test', function(req, res){
-	var testobject = {url: "potato", shorturl: "ptp"}
-	db.collection('shorturls').insert(testobject, function(err, result){
-		if (err) return console.log(err)
-		res.redirect('/')
+	app.get('/:shorturl', function(req, res) {
+		//call if in database redirect to site else return error
 	})
 })
+
+
 
