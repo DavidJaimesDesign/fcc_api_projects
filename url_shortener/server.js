@@ -50,7 +50,11 @@ MongoClient.connect("mongodb://LeetDave:EasyPass13@ds127958.mlab.com:27958/djd-u
 			db.collection('sites').save(shortenedURL, function(err, result){
 				if (err) return console.log(err)
 			})
-			res.send(JSON.stringify(shortenedURL));
+			var returnURL = {
+						url: shortenedURL.url,
+						shortURL: shortenedURL.shorturl
+					} 
+			res.send(JSON.stringify(returnURL));
 		} else {
 			res.send(JSON.stringify(error))
 		}
