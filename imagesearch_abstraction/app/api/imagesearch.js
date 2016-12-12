@@ -25,4 +25,12 @@ module.exports = function(app, db){
 			res.send(results)
 		})
 	}
+
+	function searchGoogleApi(term){
+		//http://cse.google.com/api/<USER_ID>/cse/<CSE_ID>
+		//cse code: 008565534519775532346:s46klwoigd0
+		//the first part is the user the second is the search engine ID
+		//api key: AIzaSyBmixL6yXGQHN5H3YcNcUk6oE3bHDcKYdE
+
+	}
 } 
