@@ -33,6 +33,7 @@ module.exports = function(app, db){
 		//api key: AIzaSyBmixL6yXGQHN5H3YcNcUk6oE3bHDcKYdE
 		//A sample query https://www.googleapis.com/customsearch/v1?key=AIzaSyBmixL6yXGQHN5H3YcNcUk6oE3bHDcKYdE&cx=008565534519775532346:s46klwoigd0&q=potatoes
 		//There is a part that goes in to the details needed for the pageination
+		//might switch everything over to Azure
 	}
 
 	function addPagination(amount){
