@@ -13,6 +13,13 @@ MongoClient.connect("mongodb://LeetDave:EasyPass13@ds053186.mlab.com:53186/djd-i
 	console.log("connected to imagesearch db")
 	
 	app.use(express.static(__dirname + '/views'));
+	
+	db.createCollection("searchHistory",{
+		capped: true,
+		size: 5242880,
+		max: 5000
+	})
+	
 	routes(app, db)
 	api(app, db) 
 	
