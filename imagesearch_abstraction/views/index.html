@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Image Search Abstraction Layer</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="header">
+                API Basejump: Image Search Abstraction Layer
+            </h1>
+            <blockquote>
+                User stories:
+                <ul>1)  I can get the image URLs, alt text and page urls for a set of images relating to a given search string.</ul>
+                <ul>2) I can paginate through the responses by adding a ?offset=2 parameter to the URL.</ul>
+                <ul>3) I can get a list of the most recently submitted search strings.</ul>
+            </blockquote>
+            <h3>Image Search Example usage:</h3>
+            <code>my.app/api/imagesearch/lolcats?offset = 10</code><br>
+            <h3>Example output:</h3>
+            <code>
+                {
+                  "image URL": "imgur.com/cats",
+                  "alt text": "funny cat"
+                  "page URL": "imgur.com"
+                }
+
+                9 more results
+            </code>
+
+            <h3>Search History Example usage:</h3>
+            <code>my.app/api/latest/imagesearch</code><br>
+            <h3>Example output:</h3>
+            <code>
+                {
+                  "term": "lolcats",
+                  "when": "2016-12-12T12:42:01.667Z"
+                }
+            </code>
+        </div>
+    </body>
+</html>:
