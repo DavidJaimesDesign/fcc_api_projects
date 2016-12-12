@@ -31,6 +31,11 @@ module.exports = function(app, db){
 		//cse code: 008565534519775532346:s46klwoigd0
 		//the first part is the user the second is the search engine ID
 		//api key: AIzaSyBmixL6yXGQHN5H3YcNcUk6oE3bHDcKYdE
+		//A sample query https://www.googleapis.com/customsearch/v1?key=AIzaSyBmixL6yXGQHN5H3YcNcUk6oE3bHDcKYdE&cx=008565534519775532346:s46klwoigd0&q=potatoes
+		//There is a part that goes in to the details needed for the pageination
+	}
 
+	function addPagination(amount){
+		//I don't know if I need this might as well though:
 	}
 } 
