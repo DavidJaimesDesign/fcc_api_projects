@@ -20,6 +20,9 @@ module.exports = function(app, db){
 	}
 
 	function handleHistory(req, res){
-		res.send("handle history connected")
+		db.collection('searchHistory').find().toArray(function(err, results) {
+			if(err) throw err
+			res.send(results)
+		})
 	}
 } 
