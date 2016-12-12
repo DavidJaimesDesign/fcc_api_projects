@@ -1,1 +1,7 @@
-//this is where the routes will be held
+'use-strict';
+
+module.exports = function(app, db) {
+	app.route('/').get(function(req, res){
+		res.render('index');
+	})
+}
