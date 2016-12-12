@@ -14,7 +14,7 @@ MongoClient.connect("mongodb://LeetDave:EasyPass13@ds053186.mlab.com:53186/djd-i
 	
 	app.use(express.static(__dirname + '/views'));
 	routes(app, db)
-	//api(app, db) not yet
+	api(app, db) 
 	
 	app.listen(process.env.PORT || 3000)
 })
