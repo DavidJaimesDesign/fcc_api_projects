@@ -1,8 +1,7 @@
 'use-strict'
 
 module.exports = function(app, db){
-	var cognitiveServices = require('cognitive-services')
-		
+	var Bing = require('node-bing-api')({accKey:"fa139232762046b59b1e286d9956580f"})		
 	app.get('/api/imagesearch/:search', handleSearch)
 	app.get('/api/search-history', handleHistory)
 
@@ -19,7 +18,7 @@ module.exports = function(app, db){
 			console.log("saved" + result);
 		})
 
-		var searchResults = searchBingApi(searchTerm)
+		var searchResults = searchBingAPI(searchTerm)
 		
 		res.send(JSON.stringify(searchResults))
 	}
@@ -30,30 +29,15 @@ module.exports = function(app, db){
 			res.send(results)
 		})
 	}
+	
+	function searchBingAPI(term){
+		Bing.images("Ninja Turtles", {
+  			top: 15   // Number of results (max 50)  
+  		}, function(error, res, body){
+    		console.log(body)
+  		});
 
-	function searchBingApi(term){
-		var bingImageSearch = new cognitiveServices.bingImageSearch({
-			API_KEY: "fa139232762046b59b1e286d9956580f"
-		})
-
-		const parameters = {
-			q: term,
-			count: "10",
-			offset: "0",
-			mkt: "en-us"
-		}
-
-		bingImageSearch.search({
-			parameters
-			})
-			.then((response) => {
-				return response
-			})
-			.catch((err) => {
-				return ("Error not queried", err)
-			})
 	}
-
 	function manageSearchResults(results){
 	}
 
