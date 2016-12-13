@@ -1,0 +1,30 @@
+{
+  "name": "filemetadata_microservice",
+  "version": "1.0.0",
+  "description": "A service that allows users to upload files and returns the size of the file",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DavidJaimesDesign/fcc_api_projects.git"
+  },
+  "keywords": [
+    "file",
+    "storage",
+    "microservice",
+    "fcc",
+    "jade",
+    "mongo"
+  ],
+  "author": "David Jaimes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DavidJaimesDesign/fcc_api_projects/issues"
+  },
+  "homepage": "https://github.com/DavidJaimesDesign/fcc_api_projects#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
