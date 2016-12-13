@@ -1,9 +1,10 @@
-var express     = require('express')
-var path        = require('path')
-var MongoClient = require('mongodb').MongoClient
-var routes      = require('./app/routes/index.js')
-var api         = require('./app/api/imagesearch.js')
-var app         = express()
+var express           = require('express')
+var path              = require('path')
+var MongoClient       = require('mongodb').MongoClient
+var cognitiveServices = require('cognitive-services')
+var routes            = require('./app/routes/index.js')
+var api               = require('./app/api/imagesearch.js')
+var app               = express()
 
 var db 
 

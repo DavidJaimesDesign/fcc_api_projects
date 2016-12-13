@@ -1,6 +1,8 @@
 'use-strict'
 
 module.exports = function(app, db){
+	var cognitiveServices = require('cognitive-services')
+		
 	app.get('/api/imagesearch/:search', handleSearch)
 	app.get('/api/search-history', handleHistory)
 
@@ -15,8 +17,11 @@ module.exports = function(app, db){
 		db.collection('searchHistory').save(searchObject, function(err, result){
 			if (err) throw err
 			console.log("saved" + result);
-		})	
-		res.send(JSON.stringify(searchObject))
+		})
+
+		var searchResults = searchBingApi(searchTerm)
+		
+		res.send(JSON.stringify(searchResults))
 	}
 
 	function handleHistory(req, res){
@@ -26,17 +31,30 @@ module.exports = function(app, db){
 		})
 	}
 
-	function searchGoogleApi(term){
-		//http://cse.google.com/api/<USER_ID>/cse/<CSE_ID>
-		//cse code: 008565534519775532346:s46klwoigd0
-		//the first part is the user the second is the search engine ID
-		//api key: AIzaSyBmixL6yXGQHN5H3YcNcUk6oE3bHDcKYdE
-		//A sample query https://www.googleapis.com/customsearch/v1?key=AIzaSyBmixL6yXGQHN5H3YcNcUk6oE3bHDcKYdE&cx=008565534519775532346:s46klwoigd0&q=potatoes
-		//There is a part that goes in to the details needed for the pageination
-		//might switch everything over to Azure
+	function searchBingApi(term){
+		var bingImageSearch = new cognitiveServices.bingImageSearch({
+			API_KEY: "fa139232762046b59b1e286d9956580f"
+		})
+
+		const parameters = {
+			q: term,
+			count: "10",
+			offset: "0",
+			mkt: "en-us"
+		}
+
+		bingImageSearch.search({
+			parameters
+			})
+			.then((response) => {
+				return response
+			})
+			.catch((err) => {
+				return ("Error not queried", err)
+			})
 	}
 
-	function addPagination(amount){
-		//I don't know if I need this might as well though:
+	function manageSearchResults(results){
 	}
+
 } 
