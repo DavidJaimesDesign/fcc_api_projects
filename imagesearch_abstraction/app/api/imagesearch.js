@@ -18,9 +18,14 @@ module.exports = function(app, db){
 			console.log("saved" + result);
 		})
 
-		var searchResults = searchBingAPI(searchTerm)
+		//res.send the query
+	
+		Bing.images(searchTerm, {
+  			top: 15    
+  		}, function(error, body){
+			res.send(body)
+  		});
 		
-		res.send(JSON.stringify(searchResults))
 	}
 
 	function handleHistory(req, res){
@@ -30,14 +35,6 @@ module.exports = function(app, db){
 		})
 	}
 	
-	function searchBingAPI(term){
-		Bing.images("Ninja Turtles", {
-  			top: 15   // Number of results (max 50)  
-  		}, function(error, res, body){
-    		console.log(body)
-  		});
-
-	}
 	function manageSearchResults(results){
 	}
 
