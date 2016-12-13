@@ -6,7 +6,7 @@ var api         = require('./app/api/metadata.js')
 
 var db 
 
-MongoClient.connect("your db here", function (err, database){
+MongoClient.connect("mongodb://LeetDave:EasyPass13@ds133398.mlab.com:33398/djd-filemetadata", function (err, database){
 	if (err) throw err;
 	db = database
 	console.log("connected to filemetadata db")
@@ -16,6 +16,9 @@ MongoClient.connect("your db here", function (err, database){
 		size: 5242880
 		max: 5000
 	})
+
+	app.set('views', path.join(__dirname, 'views'))
+	app.set('view engine', 'jade');
 
 	routes(app, db)
 	api(app, db)
