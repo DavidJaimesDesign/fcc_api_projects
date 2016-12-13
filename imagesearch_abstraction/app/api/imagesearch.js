@@ -21,9 +21,9 @@ module.exports = function(app, db){
 		//res.send the query
 	
 		Bing.images(searchTerm, {
-  			top: 15    
+  			top: 10
   		}, function(error, body){
-			res.send(body)
+			res.send(cleanImg(body))
   		});
 		
 	}
@@ -35,7 +35,19 @@ module.exports = function(app, db){
 		})
 	}
 	
-	function manageSearchResults(results){
+	function cleanImg(body){
+		var imgObj = JSON.parse(body.body)
+		imgObj = imgObj.value
+		var imageList = imgObj.map(makeimgObj)
+		return imageList
 	}
 
+	function makeimgObj(img){
+		return {
+			"url": img.hostPageDisplayUrl,
+			"snippet": img.name,
+			"thumbnail": img.thumbnailUrl
+			}
+	}
+	
 } 
