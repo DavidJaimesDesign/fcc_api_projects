@@ -6,7 +6,9 @@ module.exports = function(app, db){
 	app.get('/api/search-history', handleHistory)
 
 	function handleSearch(req, res){
-		var searchTerm = req.params.search
+		var offset       = req.query.offset
+		var parsedOffset = parseOffset(offset)
+		var searchTerm   = req.params.search
 		var timesearched = new Date()	
 
 		var searchObject = {
@@ -21,7 +23,8 @@ module.exports = function(app, db){
 		//res.send the query
 	
 		Bing.images(searchTerm, {
-  			top: 10
+  			top: 10,
+			skip: parsedOffset
   		}, function(error, body){
 			res.send(cleanImg(body))
   		});
@@ -48,6 +51,15 @@ module.exports = function(app, db){
 			"snippet": img.name,
 			"thumbnail": img.thumbnailUrl
 			}
+	}
+
+	function parseOffset(offset){
+		if(offset == {}) return 0
+		if(isNaN(parseInt(offset))){ 
+			return 0
+		} else {
+			return parseInt(offset)
+		}
 	}
 	
 } 
