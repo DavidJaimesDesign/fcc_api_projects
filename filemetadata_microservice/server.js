@@ -2,7 +2,6 @@ var express     = require('express')
 var path        = require('path')
 var MongoClient = require('mongodb').MongoClient
 var multer      = require('multer')
-var upload      = multer({dest: 'uploads/'})
 var routes      = require('./app/routes/index.js')
 var api         = require('./app/api/metadata.js')
 var app         = express()
