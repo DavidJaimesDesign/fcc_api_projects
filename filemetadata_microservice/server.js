@@ -21,7 +21,7 @@ MongoClient.connect("mongodb://LeetDave:EasyPass13@ds133398.mlab.com:33398/djd-f
 	app.set('view engine', 'jade');
 
 	routes(app, db)
-//	api(app, db)
+	api(app, db)
 
 	app.listen(process.env.PORT || 3000)
 })
