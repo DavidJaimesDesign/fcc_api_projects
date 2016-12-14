@@ -25,7 +25,10 @@
   },
   "homepage": "https://github.com/DavidJaimesDesign/fcc_api_projects#readme",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "express": "^4.14.0",
+    "jade": "^1.11.0",
+    "mongodb": "^2.2.16",
     "multer": "^1.2.1"
   }
 }

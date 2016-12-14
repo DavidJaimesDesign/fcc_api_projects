@@ -1,27 +1,12 @@
 'use-strict'
-var multer      = require('multer')
 
-var storage = multer.diskStorage({
-	destination: function (req, file, cb){
-		cb(null, '/my-uploads')
-	},
-	filename : function(req, file, cb){
-		cb(null, file.filename + '-' + Date.now())
-	}
-})
-
-var upload     = multer({storage: storage})
-var uploadFile = upload.single('file')
-
-module.exports = function(app, db) {
+module.exports = function(app, db) {	
+	var multer = require('multer')
 	app.get('/test', function(req ,res){
 		res.send("api is connected to server")
 	})
 	
-	app.post('/', upload.single('file'), function(req, res, next){
-		uploadFile(req, res, function(err){
-			if (err) throw err;
-		})
+	app.post('/', multer({ dest: './uploads/'}).single('findSize'), function(req, res, next){
 
 		var fileDetails = {
 			name: req.file.originalname,
@@ -31,7 +16,7 @@ module.exports = function(app, db) {
 		}
 
 		//we don't need to save to the db we just need the size 
-
+		console.log(req.file)
 		res.send(fileDetails)
 	})
 
