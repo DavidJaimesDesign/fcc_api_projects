@@ -3,7 +3,7 @@ var path        = require('path')
 var MongoClient = require('mongodb').MongoClient
 var routes      = require('./app/routes/index.js')
 var api         = require('./app/api/metadata.js')
-
+var app         = express()
 var db 
 
 MongoClient.connect("mongodb://LeetDave:EasyPass13@ds133398.mlab.com:33398/djd-filemetadata", function (err, database){
@@ -13,7 +13,7 @@ MongoClient.connect("mongodb://LeetDave:EasyPass13@ds133398.mlab.com:33398/djd-f
 		
 	db.createCollection("files",{
 		capped:true,
-		size: 5242880
+		size: 5242880,
 		max: 5000
 	})
 
@@ -21,7 +21,7 @@ MongoClient.connect("mongodb://LeetDave:EasyPass13@ds133398.mlab.com:33398/djd-f
 	app.set('view engine', 'jade');
 
 	routes(app, db)
-	api(app, db)
+//	api(app, db)
 
 	app.listen(process.env.PORT || 3000)
 })
